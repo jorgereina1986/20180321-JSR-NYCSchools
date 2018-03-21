@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">JPMC</string>
+
+    <!--DETAILS ACTIVITY-->
+    <string name="test_takers">Number of SAT test takers: </string>
+    <string name="reading_scores">Average Reading Scores: </string>
+    <string name="math_scores">Average Math Scores: </string>
+    <string name="writing_scores">Average Writing Scores: </string>
+
 </resources>

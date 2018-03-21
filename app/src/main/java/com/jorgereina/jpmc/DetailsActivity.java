@@ -2,7 +2,6 @@ package com.jorgereina.jpmc;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView testTakers;
     private TextView readingScores;
     private TextView mathScores;
-    private TextView writingAverage;
+    private TextView writingScores;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,18 +31,10 @@ public class DetailsActivity extends AppCompatActivity {
         testTakers = findViewById(R.id.details_test_takers_tv);
         readingScores = findViewById(R.id.details_average_reading_score_tv);
         mathScores = findViewById(R.id.details_average_math_score_tv);
-        writingAverage = findViewById(R.id.details_average_writing_score_tv);
-
+        writingScores = findViewById(R.id.details_average_writing_score_tv);
 
         schoolName.setText(getSchoolInfo("SCHOOL_NAME"));
-//
-
-
         getSatScoresRequest();
-    }
-
-    private String getSchoolInfo(String field) {
-        return getIntent().getStringExtra(field);
     }
 
     private void getSatScoresRequest() {
@@ -63,11 +54,12 @@ public class DetailsActivity extends AppCompatActivity {
 
                 for (int i = 0; i < scores.size(); i++) {
                     if (scores.get(i).getDbn().equals(schoolDbn)) {
+
                         SATScore score = scores.get(i);
-                        testTakers.setText(score.getTestTakers());
-                        readingScores.setText(score.getReadingScore());
-                        mathScores.setText(score.getMathScore());
-                        writingAverage.setText(score.getWritingScore());
+                        testTakers.setText(getStringResource(R.string.test_takers) + score.getTestTakers());
+                        readingScores.setText(getStringResource(R.string.reading_scores) + score.getReadingScore());
+                        mathScores.setText(getStringResource(R.string.math_scores) + score.getMathScore());
+                        writingScores.setText(getStringResource(R.string.writing_scores) + score.getWritingScore());
                     }
                 }
             }
@@ -78,4 +70,14 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+    private String getSchoolInfo(String field) {
+        return getIntent().getStringExtra(field);
+    }
+
+    private String getStringResource(int id) {
+        return getResources().getString(id);
+    }
+
+
 }
