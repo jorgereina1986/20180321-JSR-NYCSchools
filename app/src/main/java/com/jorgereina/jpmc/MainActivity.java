@@ -73,8 +73,18 @@ public class MainActivity extends AppCompatActivity implements SchoolAdapter.Ite
 
     private void openDetailsActivity(School school, int clickedItemIndex) {
         String schoolName = school.getSchoolName();
+        String schoolEmail = school.getSchoolEmail();
+        String schoolAddress = school.getAddress();
+        String schoolCity = school.getCity();
+        String schoolPhoneNumber = school.getPhoneNumber();
+        String schoolDbn = school.getDbn();
         Intent intent = new Intent(this, DetailsActivity.class);
         intent.putExtra("SCHOOL_NAME", schoolName);
+        intent.putExtra("SCHOOL_EMAIL", schoolEmail);
+        intent.putExtra("SCHOOL_ADDRESS", schoolAddress);
+        intent.putExtra("SCHOOL_CITY", schoolCity);
+        intent.putExtra("SCHOOL_PHONE_NUMBER", schoolPhoneNumber);
+        intent.putExtra("SCHOOL_DBN", schoolDbn);
         startActivity(intent);
     }
 }
