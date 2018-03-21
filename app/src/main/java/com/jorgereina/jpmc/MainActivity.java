@@ -20,6 +20,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements SchoolAdapter.ItemClickListener {
 
+    private static final String SCHOOL_URL = "https://data.cityofnewyork.us/";
+
     private List<School> schoolList = new ArrayList<>();
     private RecyclerView recyclerView;
     private LayoutManager layoutManager;
@@ -43,10 +45,10 @@ public class MainActivity extends AppCompatActivity implements SchoolAdapter.Ite
 
     private void getSchoolsRequest() {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://data.cityofnewyork.us/")
+                .baseUrl(SCHOOL_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        ChaseService service = retrofit.create(ChaseService.class);
+        SchoolService service = retrofit.create(SchoolService.class);
         Call<List<School>> schools = service.listSchools();
         schools.enqueue(new Callback<List<School>>() {
             @Override
