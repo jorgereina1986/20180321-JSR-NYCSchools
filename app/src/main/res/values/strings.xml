@@ -7,5 +7,6 @@
     <string name="math_scores">Average Math Scores:\u0020</string>
     <string name="writing_scores">Average Writing Scores:\u0020</string>
     <string name="no_info_available">No Information Available</string>
+    <string name="details_sat_information_title">SAT INFORMATION</string>
 
 </resources>
