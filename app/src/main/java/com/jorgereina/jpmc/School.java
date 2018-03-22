@@ -10,7 +10,6 @@ import com.google.gson.annotations.SerializedName;
 public class School {
 
     @SerializedName("school_name")
-    @Expose
     private String schoolName;
 
     @SerializedName("school_email")

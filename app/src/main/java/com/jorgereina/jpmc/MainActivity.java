@@ -44,9 +44,7 @@ public class MainActivity extends AppCompatActivity implements SchoolAdapter.Ite
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
 
-
         getSchoolsRequest();
-
     }
 
     private void getSchoolsRequest() {
@@ -74,10 +72,10 @@ public class MainActivity extends AppCompatActivity implements SchoolAdapter.Ite
     @Override
     public void onItemClick(int itemIndex) {
         School school = schoolList.get(itemIndex);
-        openDetailsActivity(school, itemIndex);
+        openDetailsActivity(school);
     }
 
-    private void openDetailsActivity(School school, int clickedItemIndex) {
+    private void openDetailsActivity(School school) {
         String schoolName = school.getSchoolName();
         String schoolEmail = school.getSchoolEmail();
         String schoolAddress = school.getAddress();
