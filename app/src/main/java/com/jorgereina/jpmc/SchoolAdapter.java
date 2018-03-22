@@ -19,7 +19,6 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.SchoolView
     private List<School> schoolList;
     ItemClickListener itemClickListener;
 
-
     public SchoolAdapter(Context context, List<School> schoolList, ItemClickListener itemClickListener) {
         this.context = context;
         this.schoolList = schoolList;
@@ -47,16 +46,28 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.SchoolView
     class SchoolViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView schoolName;
+        public TextView email;
+        public TextView address;
+        public TextView city;
+        public TextView phoneNumber;
 
         public SchoolViewHolder(View itemView) {
             super(itemView);
 
-            schoolName = itemView.findViewById(R.id.school_name);
+            schoolName = itemView.findViewById(R.id.main_school_name_tv);
+            email = itemView.findViewById(R.id.main_email_tv);
+            address = itemView.findViewById(R.id.main_address_tv);
+            city = itemView.findViewById(R.id.main_city_tv);
+            phoneNumber = itemView.findViewById(R.id.main_phone_number_tv);
             itemView.setOnClickListener(this);
         }
 
         void bind(School school){
             schoolName.setText(school.getSchoolName());
+            email.setText(school.getSchoolEmail());
+            address.setText(school.getAddress());
+            city.setText(school.getCity());
+            phoneNumber.setText(school.getPhoneNumber());
         }
 
         @Override
@@ -66,6 +77,7 @@ public class SchoolAdapter extends RecyclerView.Adapter<SchoolAdapter.SchoolView
         }
     }
 
+    // Interface to handle click events on RecyclerView items
     public interface ItemClickListener {
         void onItemClick(int itemIndex);
     }

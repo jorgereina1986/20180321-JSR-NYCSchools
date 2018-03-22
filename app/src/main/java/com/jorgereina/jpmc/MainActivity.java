@@ -7,6 +7,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements SchoolAdapter.Ite
     private RecyclerView recyclerView;
     private LayoutManager layoutManager;
     private SchoolAdapter adapter;
+    ProgressBar progressBar;
 
 
     @Override
@@ -33,11 +36,14 @@ public class MainActivity extends AppCompatActivity implements SchoolAdapter.Ite
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        progressBar = findViewById(R.id.main_pb);
+        progressBar.setVisibility(View.VISIBLE);
         recyclerView = findViewById(R.id.school_rv);
         layoutManager = new LinearLayoutManager(this);
         adapter = new SchoolAdapter(getApplicationContext(), schoolList, this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
+
 
         getSchoolsRequest();
 
@@ -53,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements SchoolAdapter.Ite
         schools.enqueue(new Callback<List<School>>() {
             @Override
             public void onResponse(Call<List<School>> call, Response<List<School>> response) {
-                Log.d("lagarto", "onResponse: " + response.body().get(0).getSchoolName());
+                progressBar.setVisibility(View.GONE);
                 schoolList.addAll(response.body());
                 adapter.notifyDataSetChanged();
             }

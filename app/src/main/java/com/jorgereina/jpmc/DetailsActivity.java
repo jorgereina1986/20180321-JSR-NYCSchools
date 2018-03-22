@@ -79,5 +79,4 @@ public class DetailsActivity extends AppCompatActivity {
         return getResources().getString(id);
     }
 
-
 }
